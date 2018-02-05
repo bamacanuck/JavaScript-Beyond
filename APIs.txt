@@ -1,0 +1,36 @@
+
+# Twitter
+
+	Consumer Key (API Key)	6rYIErpAJo119aLslKKyt9iSS
+
+	Consumer Secret (API Secret)	Dg8iCGDd7kp3aEebjWWHlrqdmzJATju8WO3gwh6shGXD2I83Me
+
+	liri-node-app-srs
+
+	Owner	srsAppHandle
+
+	Owner ID	960171654105194497
+
+	Access Token	960171654105194497-l7Kc1kU7zonvRhXNWZYI527XaFFrRhr
+
+	Access Token Secret	Qkh8gblKiokSVlQvZh3Ajk83q7wgr1RYZIKM9QqiO5JxD
+
+
+=======================================================
+
+# Spotify
+
+	Client ID 8e9934b1cc3947ffb104b12da519616c
+
+	Client Secret ee03a13c99ef46ee8706a5163df81fe9
+
+
+=======================================================
+
+# OMDB
+
+	API key - c4c106bc
+
+	API address -
+
+	http://www.omdbapi.com/?i=tt3896198&apikey=c4c106bc
