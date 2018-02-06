@@ -1,7 +1,20 @@
 // At the top of the liri.js file, add code to read and set any environment variables with the dotenv package:
 
 // require("dotenv").config();
+
+require('dotenv').config()
+
 // Add the code required to import the keys.js file and store it in a variable.
+
+var keys = require ('./keys');
+
+// *** console.log(keys.twitter.consumer_key);
+
+// *** console.log(keys.spotify);
+
+// *** console.log(keys.testing);
+
+
 // You should then be able to access your keys information like so
 //   var spotify = new Spotify(keys.spotify);
 //   var client = new Twitter(keys.twitter);
@@ -13,6 +26,10 @@
 // * `movie-this`
 
 // * `do-what-it-says`
+
+*** node list selector with the inquirer module, maybe
+
+
 // What Each Command Should Do
 // node liri.js my-tweets
 // This will show your last 20 tweets and when they were created at in your terminal/bash window.
