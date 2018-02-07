@@ -19,13 +19,18 @@ var keys = require ('./keys');
 // console.log(keys.spotify);
 
 // console.log(keys.testing);
- 
-var spotify = new spotReq({
+
+// ====================================
+// ====================================
+// ====================================
+
+
+var spot = new spotReq({
   id: keys.spotify.id,
   secret: keys.spotify.secret
 });
  
-spotify.search({ type: 'track', query: 'Debaser' }, function(err, data) {
+spot.search({ type: 'track', query: 'Debaser' }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
@@ -62,6 +67,22 @@ var album = data.tracks.items[0].album.name;
 
 console.log("from " + artist + " album : " + album);
 });
+
+
+// ====================================
+// ====================================
+// ====================================
+
+
+var twit = new spotReq({
+  id: keys.spotify.id,
+  secret: keys.spotify.secret
+});
+ 
+twit.search({ type: 'track', query: 'Debaser' }, function(err, data) {
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  }
 
 
 // You should then be able to access your keys information like so
