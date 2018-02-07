@@ -74,16 +74,19 @@ console.log("from " + artist + " album : " + album);
 // ====================================
 
 
-var twit = new spotReq({
-  id: keys.spotify.id,
-  secret: keys.spotify.secret
+var client = new twitReq({
+  consumer_key: keys.twitter.consumer_key,
+  consumer_secret: keys.twitter.consumer_secret,
+  access_token_key: keys.twitter.access_token_key,
+  access_token_secret: keys.twitter.access_token_secret
 });
  
-twit.search({ type: 'track', query: 'Debaser' }, function(err, data) {
-  if (err) {
-    return console.log('Error occurred: ' + err);
+var params = {screen_name: 'nodejs'};
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  if (!error) {
+    console.log(tweets);
   }
-
+});
 
 // You should then be able to access your keys information like so
 //   var spotify = new Spotify(keys.spotify);
