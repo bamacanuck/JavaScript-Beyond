@@ -25,18 +25,42 @@ var spotify = new spotReq({
   secret: keys.spotify.secret
 });
  
-spotify.search({ type: 'track', query: 'Claire Danes Poster' }, function(err, data) {
+spotify.search({ type: 'track', query: 'Debaser' }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
 
-console.log(data.tracks.items[0].name);
+// provides the artist name
 
-// the following works for the song/track name
-console.log(data.tracks.items[0].name);
+// console.log(data.tracks.items[0].artists[0].name);
 
-// the following provides the preview link
-console.log(data.tracks.items[0].preview_url);
+var artist = data.tracks.items[0].artists[0].name;
+
+console.log("artist : " + artist);
+
+// provides the song/track name
+
+// console.log(data.tracks.items[0].name);
+
+var song = data.tracks.items[0].name;
+
+console.log("song title : " + song);
+
+// provides the preview link
+
+// console.log(data.tracks.items[0].preview_url);
+
+var link = data.tracks.items[0].preview_url
+
+console.log("preview link : " + link);
+
+// provides the album name
+
+// console.log(data.tracks.items[0].album.name);
+
+var album = data.tracks.items[0].album.name;
+
+console.log("from " + artist + " album : " + album);
 });
 
 
