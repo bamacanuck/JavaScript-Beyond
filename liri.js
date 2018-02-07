@@ -2,17 +2,36 @@
 
 // require("dotenv").config();
 
-require('dotenv').config()
+dotEnvReq = require('dotenv').config();
+
+requestReq = require('request');
+
+twitReq = require('twitter');
+
+spotReq = require('node-spotify-api');
 
 // Add the code required to import the keys.js file and store it in a variable.
 
 var keys = require ('./keys');
 
-// *** console.log(keys.twitter.consumer_key);
+// console.log(keys.twitter.consumer_key);
 
-// *** console.log(keys.spotify);
+// console.log(keys.spotify);
 
-// *** console.log(keys.testing);
+// console.log(keys.testing);
+ 
+var spotify = new spotReq({
+  id: keys.id,
+  secret: keys.secret
+});
+ 
+spotify.search({ type: 'track', query: 'Claire Danes Poster' }, function(err, data) {
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  }
+
+console.log(data); 
+});
 
 
 // You should then be able to access your keys information like so
@@ -27,7 +46,7 @@ var keys = require ('./keys');
 
 // * `do-what-it-says`
 
-*** node list selector with the inquirer module, maybe
+// *** node list selector with the inquirer module, maybe
 
 
 // What Each Command Should Do
