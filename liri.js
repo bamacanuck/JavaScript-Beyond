@@ -2,7 +2,7 @@
 
 // require("dotenv").config();
 
-dotEnvReq = require('dotenv').config();
+require('dotenv').config('~/Desktop/GT_Code_Camp/liri/liri-node-app/.env');
 
 requestReq = require('request');
 
@@ -21,8 +21,8 @@ var keys = require ('./keys');
 // console.log(keys.testing);
  
 var spotify = new spotReq({
-  id: keys.id,
-  secret: keys.secret
+  id: keys.spotify.id,
+  secret: keys.spotify.secret
 });
  
 spotify.search({ type: 'track', query: 'Claire Danes Poster' }, function(err, data) {
@@ -30,7 +30,7 @@ spotify.search({ type: 'track', query: 'Claire Danes Poster' }, function(err, da
     return console.log('Error occurred: ' + err);
   }
 
-console.log(data); 
+console.log(data.tracks); 
 });
 
 
