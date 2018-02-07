@@ -30,7 +30,13 @@ spotify.search({ type: 'track', query: 'Claire Danes Poster' }, function(err, da
     return console.log('Error occurred: ' + err);
   }
 
-console.log(data.tracks); 
+console.log(data.tracks.items[0].name);
+
+// the following works for the song/track name
+console.log(data.tracks.items[0].name);
+
+// the following provides the preview link
+console.log(data.tracks.items[0].preview_url);
 });
 
 
