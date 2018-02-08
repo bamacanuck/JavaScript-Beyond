@@ -10,13 +10,24 @@ var client = new twitReq({
   access_token_key: keys.twitter.access_token_key,
   access_token_secret: keys.twitter.access_token_secret
 });
- 
-var params = {screen_name: 'nodejs'};
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-	// console.log(tweets);
-	if (!error) {
-	    console.log(tweets);
-	}
+
+var count = 1,
+	util = require('util');
+
+client.stream('statuses/filter', {track: "love"}, function(stream) {
+	stream.on('data', function(tweet) {
+		console.log(tweet.text);
+		stream.destroy();
+		// process.exit(0);
+	});
 });
+ 
+// var params = {count: 20};
+// client.get('statuses/user_timeline', params, function(error, tweets, response) {
+// 	console.log(tweets);
+// 	if (!error) {
+// 	    console.log(tweets);
+// 	}
+// };
 
 // console.log(params);
