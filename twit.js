@@ -21,8 +21,10 @@ var client = new twitReq({
 // 		// process.exit(0);
 // 	});
 // });
+
+// still this thing...
  
-var params = {screen_name: 'shanewlrh', count: 1};
+var params = {screen_name: 'shanewlrh', count: 2};
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
 	console.log(tweets[0].text);
 	if (!error) {
