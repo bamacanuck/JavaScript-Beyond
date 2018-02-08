@@ -1,3 +1,5 @@
+// omdb
+
 require('dotenv').config('~/Desktop/GT_Code_Camp/liri/liri-node-app/.env');
 
 var keys = require ('./keys');
@@ -20,14 +22,12 @@ function getTweets (handle, number) {
 
 	client.get ('statuses/user_timeline', params, function(error, tweets, response) {
 		// console.log(tweets[0].text);
-		if (error) {
-			console.log("We have some error trouble, here.");
-		}
-		else {
+		if (!error) {
+
 			// console.log('yep');
 			for (var i = 0; i < tweets.length; i++) {
-				console.log("tweet text : " + tweets[i].text);
-				console.log("first tweeted at : " + tweets[i].created_at);
+				console.log(tweets[i].text);
+				console.log(tweets[i].created_at);
 		};
 
 		// here's our problem (the 'else part, below)
@@ -39,5 +39,3 @@ function getTweets (handle, number) {
 };
 
 getTweets ('shanewlrh', 20);
-
-console.log("YEP... that's the one, alright...");
