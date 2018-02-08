@@ -29,7 +29,9 @@ for (var i = 2; i < nodeArgs.length; i++) {
 
   }
 }*/
-movieName = encodeURI(process.argv[2])
+// movieName = encodeURI(process.argv[2]);
+
+movieName = process.argv[2];
 
 // Then run a request to the OMDB API with the movie specified
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
