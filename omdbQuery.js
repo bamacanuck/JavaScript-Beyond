@@ -44,7 +44,13 @@ requestReq(queryUrl, function(error, response, body) {
 
     // Parse the body of the site and recover just the imdbRating
     // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-    console.log("Release Year: " + JSON.parse(body).Title);
-    console.log("Release Year: " + JSON.parse(body).Year);
+    console.log("movie title : " + JSON.parse(body).Title);
+    console.log("release year : " + JSON.parse(body).Year);
+    console.log("IMDB rating : " + JSON.parse(body).imdbRating);
+    console.log("Rotten Tomatoes rating : " + JSON.parse(body).Ratings[0]);
+    console.log("produced in : " + JSON.parse(body).Country);
+    console.log("language(s) : " + JSON.parse(body).Language);
+    console.log("brief plot summary : " + JSON.parse(body).Plot);
+    console.log("cast includes : " + JSON.parse(body).Actors);
   }
 });
