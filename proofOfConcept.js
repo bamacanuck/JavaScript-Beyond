@@ -5,8 +5,6 @@ require('dotenv').config('~/Desktop/GT_Code_Camp/liri/liri-node-app/.env');
 
 requestReq = require('request');
 
-twitReq = require('twitter');
-
 spotReq = require('node-spotify-api');
 
 // Add the code required to import the keys.js file and store it in a variable.
@@ -18,8 +16,8 @@ inquirer
   .prompt([
     {
       type: "list",
-      message: "Which Pokemon do you choose?",
-      choices: ["A", "B", "Spotify a song"],
+      message: "What do you want to do with this application?",
+      choices: ["Get Tweets", "B", "Spotify a song"],
       name: "pokemon"
     }
   ])
@@ -83,3 +81,24 @@ inquirer
         console.log("NOPE");
 }
   });
+
+
+// ================================
+// ================================
+// ================================
+
+twitReq = require('twitter');
+
+var client = new twitReq({
+  consumer_key: keys.twitter.consumer_key,
+  consumer_secret: keys.twitter.consumer_secret,
+  access_token_key: keys.twitter.access_token,
+  access_token_secret: keys.twitter.access_token_secret
+});
+ 
+var params = {screen_name: 'nodejs'};
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  if (!error) {
+    console.log(tweets);
+  }
+});
