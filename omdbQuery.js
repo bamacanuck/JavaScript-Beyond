@@ -14,28 +14,8 @@ var client = new twitReq({
 });
 
 
-function getTweets (handle, number) {
-
-// var params = {screen_name: 'shanewlrh', count: 20};
-
-	var params = {screen_name: handle, count: number};
-
-	client.get ('statuses/user_timeline', params, function(error, tweets, response) {
-		// console.log(tweets[0].text);
-		if (!error) {
-
-			// console.log('yep');
-			for (var i = 0; i < tweets.length; i++) {
-				console.log(tweets[i].text);
-				console.log(tweets[i].created_at);
-		};
-
-		// here's our problem (the 'else part, below)
-		// else {
-		// 	console.log("We have some error trouble, here.");
-		// 	};
-		};
-	});
-};
+function getMovieData {
+	
+}
 
 getTweets ('shanewlrh', 20);
