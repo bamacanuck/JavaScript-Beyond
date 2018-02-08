@@ -27,7 +27,7 @@ function getTweets (handle, number) {
 			// console.log('yep');
 			for (var i = 0; i < tweets.length; i++) {
 				console.log("tweet text : " + tweets[i].text);
-				console.log("first tweeted at : " + tweets[i].created_at);
+				console.log("first tweeted when : " + tweets[i].created_at);
 		};
 
 		// here's our problem (the 'else part, below)
@@ -40,4 +40,4 @@ function getTweets (handle, number) {
 
 getTweets ('shanewlrh', 20);
 
-console.log("YEP... that's the one, alright...");
+// console.log("YEP... that's the one, alright...");
