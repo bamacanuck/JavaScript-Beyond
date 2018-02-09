@@ -59,5 +59,3 @@ requestReq(queryUrl, function(error, response, body) {
     console.log("cast includes : " + JSON.parse(body).Actors);
   }
 });
-
-module.exports = 

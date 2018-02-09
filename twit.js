@@ -4,11 +4,6 @@ var keys = require ('./keys');
 
 twitReq = require('twitter');
 
-
-var twitMethod = {
-
-	tweetStorm: function () {
-
 	var client = new twitReq({
 	  consumer_key: keys.twitter.consumer_key,
 	  consumer_secret: keys.twitter.consumer_secret,
@@ -43,11 +38,4 @@ var twitMethod = {
 	};
 
 	getTweets ('shanewlrh', 20);
-	}
-
-};
-
-exports.module = twitMethod;
-
-
 // console.log("YEP... that's the one, alright...");

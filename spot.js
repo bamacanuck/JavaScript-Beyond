@@ -6,12 +6,7 @@ spotReq = require('node-spotify-api');
 
 var keys = require ('./keys');
 
-
-var spotMethod = {
-
-    runSpot: function () {
-
-        var nodeArgsSpot = process.argv;
+var nodeArgsSpot = process.argv;
 
         var songName = "";
 
@@ -27,7 +22,7 @@ var spotMethod = {
 
           else {
 
-            songName += nodeArgs[i];
+            songName += nodeArgsSpot[i];
 
           }
         };
@@ -69,7 +64,3 @@ var spotMethod = {
                 console.log("from " + artist + " album : " + album);
                 
                 });
-    }
-};
-
-exports.module = spotMethod;
