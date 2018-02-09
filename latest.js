@@ -3,6 +3,37 @@ require('dotenv').config('~/Desktop/GT_Code_Camp/liri/liri-node-app/.env');
 var keys = require ('./keys');
 
 
+// separate out truly 'operative' arguments from users
+
+opArgs= process.argv.slice(2);
+
+var ourTask = opArgs[0];
+var ourInput = opArgs[1];
+
+function liriMain (ourTask, ourInput) {
+    switch (ourTask) {
+        
+        case "my-tweets":
+            callTwitter();
+            break;
+
+        case "spotify-this-song":
+            if (opArgs.length === 1) {
+                var songName = "The Sign Ace of Base";
+            } else if (opArgs.length === 2) {
+                var songName = ourInput;
+            } else {
+                var songName = '';
+                for (var i = 1; i < opArgs.length; i++) {
+                    songName = songName + ' ' + opArgs[i];
+                }
+            }
+            break;
+
+        case 
+
+// ======================================================
+
 function callSpotify (songName) {
 
 	spotReq = require('node-spotify-api');
@@ -173,7 +204,7 @@ function callTwitter () {
 	};
 
 	getTweets ('shanewlrh', 20);
-}
+};
 
 
 
