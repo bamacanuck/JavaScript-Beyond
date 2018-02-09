@@ -12,32 +12,38 @@ var client = new twitReq({
 });
 
 
-function getTweets (handle, number) {
+function tweetStorm () {
 
-// var params = {screen_name: 'shanewlrh', count: 20};
+	function getTweets (handle, number) {
 
-	var params = {screen_name: handle, count: number};
+	// var params = {screen_name: 'shanewlrh', count: 20};
 
-	client.get ('statuses/user_timeline', params, function(error, tweets, response) {
-		// console.log(tweets[0].text);
-		if (error) {
-			console.log("We have some error trouble, here.");
-		}
-		else {
-			// console.log('yep');
-			for (var i = 0; i < tweets.length; i++) {
-				console.log("tweet text : " + tweets[i].text);
-				console.log("first tweeted when : " + tweets[i].created_at);
-		};
+		var params = {screen_name: handle, count: number};
 
-		// here's our problem (the 'else part, below)
-		// else {
-		// 	console.log("We have some error trouble, here.");
-		// 	};
-		};
-	});
+		client.get ('statuses/user_timeline', params, function(error, tweets, response) {
+			// console.log(tweets[0].text);
+			if (error) {
+				console.log("We have some error trouble, here.");
+			}
+			else {
+				// console.log('yep');
+				for (var i = 0; i < tweets.length; i++) {
+					console.log("tweet text : " + tweets[i].text);
+					console.log("first tweeted when : " + tweets[i].created_at);
+			};
+
+			// here's our problem (the 'else part, below)
+			// else {
+			// 	console.log("We have some error trouble, here.");
+			// 	};
+			};
+		});
+	};
+
+	getTweets ('shanewlrh', 20);
 };
 
-getTweets ('shanewlrh', 20);
+tweetStorm();
+
 
 // console.log("YEP... that's the one, alright...");
