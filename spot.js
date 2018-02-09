@@ -6,61 +6,70 @@ spotReq = require('node-spotify-api');
 
 var keys = require ('./keys');
 
-var nodeArgs = process.argv;
 
-var songName = "";
+var spotMethod = {
 
-// ensuring "coverage" of multi-word titles, as well (below)
+    runSpot: function () {
 
-for (var i = 2; i < nodeArgs.length; i++) {
+        var nodeArgsSpot = process.argv;
 
-  if (i > 2 && i < nodeArgs.length) {
+        var songName = "";
 
-    songName = songName + "+" + nodeArgs[i];
+        // ensuring "coverage" of multi-word titles, as well (below)
 
-  }
+        for (var i = 2; i < nodeArgsSpot.length; i++) {
 
-  else {
+          if (i > 2 && i < nodeArgsSpot.length) {
 
-    songName += nodeArgs[i];
+            songName = songName + "+" + nodeArgsSpot[i];
 
-  }
-};
-
-if (songName == "") {
-  songName = 'The Sign - Ace of Base';
-}
-
-var spot = new spotReq({
-          id: keys.spotify.id,
-          secret: keys.spotify.secret
-        });
-         
-        spot.search({ type: 'track', query: songName }, function(err, data) {
-          if (err) {
-            return console.log('Error occurred: ' + err);
           }
 
-        // returning the specified data, and
-        // including some categorization text
+          else {
 
-        var artist = data.tracks.items[0].artists[0].name;
+            songName += nodeArgs[i];
 
-        console.log("artist : " + artist);
+          }
+        };
 
-        
-        var song = data.tracks.items[0].name;
+        if (songName == "") {
+          songName = 'The Sign - Ace of Base';
+        }
 
-        console.log("song title : " + song);
+        var spot = new spotReq({
+                  id: keys.spotify.id,
+                  secret: keys.spotify.secret
+                });
+                 
+                spot.search({ type: 'track', query: songName }, function(err, data) {
+                  if (err) {
+                    return console.log('Error occurred: ' + err);
+                  }
+
+                // returning the specified data, and
+                // including some categorization text
+
+                var artist = data.tracks.items[0].artists[0].name;
+
+                console.log("artist : " + artist);
+
+                
+                var song = data.tracks.items[0].name;
+
+                console.log("song title : " + song);
 
 
-        var link = data.tracks.items[0].preview_url
+                var link = data.tracks.items[0].preview_url
 
-        console.log("preview link : " + link);
+                console.log("preview link : " + link);
 
-        
-        var album = data.tracks.items[0].album.name;
+                
+                var album = data.tracks.items[0].album.name;
 
-        console.log("from " + artist + " album : " + album);
-        
-        });
+                console.log("from " + artist + " album : " + album);
+                
+                });
+    }
+};
+
+exports.module = spotMethod;

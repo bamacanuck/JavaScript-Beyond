@@ -13,6 +13,7 @@ var movieName = "";
 
 // ensuring "coverage" of multi-word titles, as well (below)
 
+
 for (var i = 2; i < nodeArgs.length; i++) {
 
   if (i > 2 && i < nodeArgs.length) {
@@ -58,3 +59,5 @@ requestReq(queryUrl, function(error, response, body) {
     console.log("cast includes : " + JSON.parse(body).Actors);
   }
 });
+
+module.exports = 

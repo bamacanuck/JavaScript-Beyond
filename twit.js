@@ -4,15 +4,17 @@ var keys = require ('./keys');
 
 twitReq = require('twitter');
 
-var client = new twitReq({
-  consumer_key: keys.twitter.consumer_key,
-  consumer_secret: keys.twitter.consumer_secret,
-  access_token_key: keys.twitter.access_token_key,
-  access_token_secret: keys.twitter.access_token_secret
-});
 
+var twitMethod = {
 
-function tweetStorm () {
+	tweetStorm: function () {
+
+	var client = new twitReq({
+	  consumer_key: keys.twitter.consumer_key,
+	  consumer_secret: keys.twitter.consumer_secret,
+	  access_token_key: keys.twitter.access_token_key,
+	  access_token_secret: keys.twitter.access_token_secret
+	});
 
 	function getTweets (handle, number) {
 
@@ -41,9 +43,11 @@ function tweetStorm () {
 	};
 
 	getTweets ('shanewlrh', 20);
+	}
+
 };
 
-tweetStorm();
+exports.module = twitMethod;
 
 
 // console.log("YEP... that's the one, alright...");
