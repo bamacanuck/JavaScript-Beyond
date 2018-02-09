@@ -28,9 +28,26 @@ function liriMain (ourTask, ourInput) {
                     songName = songName + ' ' + opArgs[i];
                 }
             }
+            callSpotify(songName);
             break;
 
-        case 
+        case "movie-this":
+        	if (opArgs.length === 1) {
+                var movieTitle = "Mr. Nobody";
+            } else if (opArgs.length === 2) {
+                movieTitle = ourInput;
+            } else {
+                movieTitle = '';
+                for (var i = 1; i < opArgs.length; i++) {
+                    movieTitle = movieTitle + ' ' + opArgs[i];
+                }
+            }    
+            callOMDB(movieTitle); 
+            break;
+
+            default:
+            	console.log("In choosing not to decide, you still have made a choice!");
+        };
 
 // ======================================================
 
@@ -206,18 +223,6 @@ function callTwitter () {
 	getTweets ('shanewlrh', 20);
 };
 
+// ======================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ====================================================== 
+liriMain (ourTask, ourInput); 
