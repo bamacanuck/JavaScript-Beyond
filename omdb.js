@@ -47,7 +47,7 @@ requestReq(queryUrl, function(error, response, body) {
 
     // parsing, to recover specified data,
     // and including some categorization text
-    
+
     console.log("movie title : " + JSON.parse(body).Title);
     console.log("release year : " + JSON.parse(body).Year);
     console.log("IMDB rating : " + JSON.parse(body).imdbRating);
