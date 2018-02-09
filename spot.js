@@ -41,6 +41,9 @@ var spot = new spotReq({
             return console.log('Error occurred: ' + err);
           }
 
+        // returning the specified data, and
+        // including some categorization text
+
         var artist = data.tracks.items[0].artists[0].name;
 
         console.log("artist : " + artist);
