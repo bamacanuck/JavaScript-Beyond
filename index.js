@@ -1,80 +1,64 @@
-var inquirer = require("inquirer");
-
 require('dotenv').config('~/Desktop/GT_Code_Camp/liri/liri-node-app/.env');
 
-requestReq = require('request');
+var keys = require("./keys.js");
+var spotReq = require("node-spotify-api");
+var twitReq = require("twitter");
 
-spotReq = require('node-spotify-api');
-
-twitReq = require('twitter');
-
-// Add the code required to import the keys.js file and store it in a variable.
-
-var keys = require ('./keys');
-
-inquirer.prompt([
-    {
-      type: "list",
-      message: "What do you want to do with this application?",
-      choices: ["Get Tweets", "B", "Spotify a song"],
-      name: "pokemon"
-    }
-  ])
-  .then(function(inquirerResponse) {
-    // If the inquirerResponse confirms, we displays the inquirerResponse's username and pokemon from the answers.
-    
-    switch(inquirerResponse.pokemon) {
-    case 'Get Tweets':
-        tweetTime();
-        break;
-    case 'B':
-        console.log("YEP - B");
-        break;
-    case 'Spotify a song':
-        
-        var spot = new spotReq({
-          id: keys.spotify.id,
-          secret: keys.spotify.secret
-        });
-         
-        spot.search({ type: 'track', query: 'Debaser' }, function(err, data) {
-          if (err) {
-            return console.log('Error occurred: ' + err);
-          }
-
-        var artist = data.tracks.items[0].artists[0].name;
-
-        console.log("artist : " + artist);
-
-        
-        var song = data.tracks.items[0].name;
-
-        console.log("song title : " + song);
+var requestReq = require("request");
+var fsReq = require("fs");
 
 
-        var link = data.tracks.items[0].preview_url
+var allArgs = process.argv;
+var theArray = [];
+// var action = process.argv.slice(2);
 
-        console.log("preview link : " + link);
+for (var i = 2; i < allArgs.length; i++){
 
-        
-        var album = data.tracks.items[0].album.name;
+  theArray.push(allArgs[i]);
 
-        console.log("from " + artist + " album : " + album);
-        
-        });
-
-        break;
-    default:
-        console.log("NOPE");
 }
-  });
 
+var argOne = theArray.splice(0,1);
+var argTwo = theArray.join(" ");
+var ourTask = String(argOne);
+var ourInput = String(argTwo);
 
 // ================================
 // ================================
 // ================================
 
-function tweetTime () {
+switch (ourTask){
+  case "my-tweets":
+  callTwitter();
+  // logAction();
+  break;
+
+  case "spotify-this-song":
+  callSpotify();
+  // logAction();
+  break;
+
+  case "movie-this":
+  movieThis();
+  // logAction();
+  break;
+
+  case "do-what-it-says":
+  doThis();
+  // logAction();
+  break;
+
+}
+
+// ================================
+// ================================
+// ================================
+
+//Functions
+
+//Commands for Liri to take in...
+// * `my-tweets`
+function callTwitter(){
 
   var client = new twitReq({
     consumer_key: keys.twitter.consumer_key,
@@ -110,4 +94,91 @@ function tweetTime () {
   };
 
   getTweets ('shanewlrh', 20);
+}
+
+// ================================
+// ================================
+// ================================
+
+// * `spotify-this-song`
+function callSpotify (){
+  console.log("yeah, the Spotify one");
+  // spotify.search({
+  //   type:"track",
+  //   query: value}, function(err, data){
+
+  //     if (err) {
+  //       console.log("Error occurred: " + err);
+  //       return;
+  //     }
+  // // * if no song is provided then your program will default to
+  // //   * "The Sign" by Ace of Base
+  // if(ourInput === ""){
+      
+  //     }
+  // else{
+
+  // for (i = 0; i < 5; i++){
+
+  //     var results = data.tracks.items[i];
+
+  //     var artist = results.artists[0].name;
+  //     var songName = results.name;
+  //     var songLink = results.external_urls.spotify;
+  //     var album = results.album.name;
+
+  //     //Need: artist(s), song's name, preview link of song, album//
+  //     console.log("************");
+  //     console.log("Artist: " + artist);
+  //     console.log("Song: " + songName);
+  //     console.log("Song Link: " + songLink);
+  //     console.log("Album: " + album);
+  //     console.log("************");
+  //   }
+}
+
+// ================================
+// ================================
+// ================================
+
+// * `movie-this`
+function movieThis(){
+
+  if (ourInput == "") {
+  ourInput = 'Mr. Nobody';
+};
+
+// make the OMDB API request/call
+var queryUrl = "http://www.omdbapi.com/?t=" + ourInput + "&y=&plot=short&apikey=trilogy";
+
+// potential debugging helper
+// console.log(queryUrl);
+
+requestReq(queryUrl, function(error, response, body) {
+
+  // If the request is successful
+  if (!error && response.statusCode === 200) {
+
+    // parsing, to recover specified data,
+    // and including some categorization text
+
+    console.log("movie title : " + JSON.parse(body).Title);
+    console.log("release year : " + JSON.parse(body).Year);
+    console.log("IMDB rating : " + JSON.parse(body).imdbRating);
+    console.log("Rotten Tomatoes rating : " + JSON.parse(body).Ratings[1].Value);
+    console.log("produced in : " + JSON.parse(body).Country);
+    console.log("language(s) : " + JSON.parse(body).Language);
+    console.log("brief plot summary : " + JSON.parse(body).Plot);
+    console.log("cast includes : " + JSON.parse(body).Actors);
+  }
+});
+
+// * `do-what-it-says`
+function doThis(){
+
+
+};
+
+}
+
 };
