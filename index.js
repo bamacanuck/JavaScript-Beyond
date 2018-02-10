@@ -23,6 +23,7 @@ var argTwo = theArray.join(" ");
 var ourTask = String(argOne);
 var ourInput = String(argTwo);
 
+
 // ================================
 // ================================
 // ================================
@@ -39,7 +40,7 @@ switch (ourTask){
   break;
 
   case "movie-this":
-  movieThis();
+  callOMDB();
   // logAction();
   break;
 
@@ -103,46 +104,52 @@ function callTwitter(){
 // * `spotify-this-song`
 function callSpotify (){
   console.log("yeah, the Spotify one");
-  // spotify.search({
-  //   type:"track",
-  //   query: value}, function(err, data){
+  
+      if (ourInput == "") {
+        ourInput = 'The Sign - Ace of Base';
+      }
 
-  //     if (err) {
-  //       console.log("Error occurred: " + err);
-  //       return;
-  //     }
-  // // * if no song is provided then your program will default to
-  // //   * "The Sign" by Ace of Base
-  // if(ourInput === ""){
-      
-  //     }
-  // else{
+      var spot = new spotReq({
+                id: keys.spotify.id,
+                secret: keys.spotify.secret
+              });
+               
+              spot.search({ type: 'track', query: ourInput }, function(err, data) {
+                if (err) {
+                  return console.log('Error occurred: ' + err);
+                }
 
-  // for (i = 0; i < 5; i++){
+              // returning the specified data, and
+              // including some categorization text
 
-  //     var results = data.tracks.items[i];
+              var artist = data.tracks.items[0].artists[0].name;
 
-  //     var artist = results.artists[0].name;
-  //     var songName = results.name;
-  //     var songLink = results.external_urls.spotify;
-  //     var album = results.album.name;
+              console.log("artist : " + artist);
 
-  //     //Need: artist(s), song's name, preview link of song, album//
-  //     console.log("************");
-  //     console.log("Artist: " + artist);
-  //     console.log("Song: " + songName);
-  //     console.log("Song Link: " + songLink);
-  //     console.log("Album: " + album);
-  //     console.log("************");
-  //   }
-}
+              
+              var song = data.tracks.items[0].name;
+
+              console.log("song title : " + song);
+
+
+              var link = data.tracks.items[0].preview_url
+
+              console.log("preview link : " + link);
+
+              
+              var album = data.tracks.items[0].album.name;
+
+              console.log("from " + artist + " album : " + album);
+              
+              });
+      };
 
 // ================================
 // ================================
 // ================================
 
 // * `movie-this`
-function movieThis(){
+function callOMDB(){
 
   if (ourInput == "") {
   ourInput = 'Mr. Nobody';
@@ -178,7 +185,5 @@ function doThis(){
 
 
 };
-
-}
 
 };
