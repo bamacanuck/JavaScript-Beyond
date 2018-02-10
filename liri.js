@@ -7,6 +7,7 @@ var twitReq = require("twitter");
 var requestReq = require("request");
 var fsReq = require("fs");
 
+var goAhead = function () {};
 
 var allArgs = process.argv;
 var theArray = [];
@@ -45,7 +46,7 @@ switch (ourTask){
   break;
 
   case "do-what-it-says":
-  doTheThing();
+  goAhead();
   // logAction();
   break;
 
@@ -84,15 +85,15 @@ function callTwitter(){
         for (var i = 0; i < tweets.length; i++) {
           console.log("tweet text : " + tweets[i].text);
           console.log("first tweeted when : " + tweets[i].created_at);
-      };
+      }
 
       // here's our problem (the 'else part, below)
       // else {
       //  console.log("We have some error trouble, here.");
       //  };
-      };
+      }
     });
-  };
+  }
 
   getTweets ('shanewlrh', 20);
 }
@@ -105,7 +106,7 @@ function callTwitter(){
 
 function callSpotify (){
   
-      if (ourInput == "") {
+      if (ourInput === "") {
         ourInput = 'The Sign - Ace of Base';
       }
 
@@ -132,7 +133,7 @@ function callSpotify (){
               console.log("song title : " + song);
 
 
-              var link = data.tracks.items[0].preview_url
+              var link = data.tracks.items[0].preview_url;
 
               console.log("preview link : " + link);
 
@@ -142,7 +143,7 @@ function callSpotify (){
               console.log("from " + artist + " album : " + album);
               
               });
-      };
+      }
 
 // ================================
 // ================================
@@ -152,9 +153,9 @@ function callSpotify (){
 
 function callOMDB(){
 
-  if (ourInput == "") {
+  if (ourInput === "") {
   ourInput = 'Mr. Nobody';
-};
+}
 
 // make the OMDB API request/call
 var queryUrl = "http://www.omdbapi.com/?t=" + ourInput + "&y=&plot=short&apikey=trilogy";
@@ -178,10 +179,40 @@ requestReq(queryUrl, function(error, response, body) {
   }
 });
 
-// the sorta-call-it-from-file function
-function doTheThing(){
+function goAhead(){
 
+// Feel free to change the text in that document to test out the feature for other commands.
+fs.readFile("random.txt", function(error,data){
 
-};
+  var content = data.split(",");
 
-};
+  // var array = data.toString().split("\n");
+  // console.log(array);
+
+  ourTask = content[0];
+  ourInput = content[1];
+
+  switch (ourTask){
+  case "my-tweets":
+  callTwitter();
+  break;
+
+  case "spotify-this-song":
+  callSpotify();
+  break;
+
+  case "movie-this":
+  callOMDB();
+  break;
+
+  case "do-what-it-says":
+  goAhead();
+  break;
+
+}
+
+});
+
+}
+
+}
