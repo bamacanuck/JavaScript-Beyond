@@ -60,7 +60,7 @@ switch (ourTask){
 
 // call for the listing of my last twenty tweets
 
-function callTwitter(){
+function callTwitter () {
 
   var client = new twitReq({
     consumer_key: keys.twitter.consumer_key,
@@ -104,7 +104,7 @@ function callTwitter(){
 
 // call for song data
 
-function callSpotify (){
+function callSpotify () {
   
       if (ourInput === "") {
         ourInput = 'The Sign - Ace of Base';
@@ -151,7 +151,7 @@ function callSpotify (){
 
 // call for movie data
 
-function callOMDB(){
+function callOMDB () {
 
   if (ourInput === "") {
   ourInput = 'Mr. Nobody';
@@ -179,37 +179,35 @@ requestReq(queryUrl, function(error, response, body) {
   }
 });
 
-function goAhead(){
+function goAhead () {
 
-// Feel free to change the text in that document to test out the feature for other commands.
-fs.readFile("random.txt", function(error,data){
+  fs.readFile("random.txt", function (error, data) {
 
-  var content = data.split(",");
+      if (error) {
+          return console.log(error);
+      }
 
-  // var array = data.toString().split("\n");
-  // console.log(array);
+      var ourParts = data.split(",");
+      ourTask = ourParts[0];
+      ourInput = ourParts[1];
 
-  ourTask = content[0];
-  ourInput = content[1];
+      console.log('\n');
+      console.log(ourParts);
+      
+      switch (ourTask){
+      case "my-tweets":
+      callTwitter();
+      break;
 
-  switch (ourTask){
-  case "my-tweets":
-  callTwitter();
-  break;
+      case "spotify-this-song":
+      callSpotify();
+      break;
 
-  case "spotify-this-song":
-  callSpotify();
-  break;
+      case "movie-this":
+      callOMDB();
+      break;
 
-  case "movie-this":
-  callOMDB();
-  break;
-
-  case "do-what-it-says":
-  goAhead();
-  break;
-
-}
+    }
 
 });
 
