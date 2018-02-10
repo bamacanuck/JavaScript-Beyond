@@ -45,7 +45,7 @@ switch (ourTask){
   break;
 
   case "do-what-it-says":
-  doThis();
+  doTheThing();
   // logAction();
   break;
 
@@ -55,10 +55,10 @@ switch (ourTask){
 // ================================
 // ================================
 
-//Functions
+//functions - those called tasks for Liri...
 
-//Commands for Liri to take in...
-// * `my-tweets`
+// call for the listing of my last twenty tweets
+
 function callTwitter(){
 
   var client = new twitReq({
@@ -70,7 +70,7 @@ function callTwitter(){
 
   function getTweets (handle, number) {
 
-  // var params = {screen_name: 'shanewlrh', count: 20};
+  // previously - var params = {screen_name: 'shanewlrh', count: 20};
 
     var params = {screen_name: handle, count: number};
 
@@ -101,9 +101,9 @@ function callTwitter(){
 // ================================
 // ================================
 
-// * `spotify-this-song`
+// call for song data
+
 function callSpotify (){
-  console.log("yeah, the Spotify one");
   
       if (ourInput == "") {
         ourInput = 'The Sign - Ace of Base';
@@ -148,7 +148,8 @@ function callSpotify (){
 // ================================
 // ================================
 
-// * `movie-this`
+// call for movie data
+
 function callOMDB(){
 
   if (ourInput == "") {
@@ -157,9 +158,6 @@ function callOMDB(){
 
 // make the OMDB API request/call
 var queryUrl = "http://www.omdbapi.com/?t=" + ourInput + "&y=&plot=short&apikey=trilogy";
-
-// potential debugging helper
-// console.log(queryUrl);
 
 requestReq(queryUrl, function(error, response, body) {
 
@@ -180,8 +178,8 @@ requestReq(queryUrl, function(error, response, body) {
   }
 });
 
-// * `do-what-it-says`
-function doThis(){
+// the sorta-call-it-from-file function
+function doTheThing(){
 
 
 };
