@@ -1,3 +1,5 @@
+function myOMDB () {
+
 // omdb query part
 
 require('dotenv').config('~/Desktop/GT_Code_Camp/liri/liri-node-app/.env');
@@ -59,3 +61,7 @@ requestReq(queryUrl, function(error, response, body) {
     console.log("cast includes : " + JSON.parse(body).Actors);
   }
 });
+
+};
+
+myOMDB ();

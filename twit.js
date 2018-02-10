@@ -1,3 +1,5 @@
+function myTwitter () {
+
 require('dotenv').config('~/Desktop/GT_Code_Camp/liri/liri-node-app/.env');
 
 var keys = require ('./keys');
@@ -38,4 +40,8 @@ twitReq = require('twitter');
 	};
 
 	getTweets ('shanewlrh', 20);
+};
+
+console.log("THIS IS THE STATEMENT YOU SEEK.");
+myTwitter();
 // console.log("YEP... that's the one, alright...");

@@ -1,3 +1,5 @@
+function mySpotify () {
+
 require('dotenv').config('~/Desktop/GT_Code_Camp/liri/liri-node-app/.env');
 
 spotReq = require('node-spotify-api');
@@ -64,3 +66,7 @@ var nodeArgsSpot = process.argv;
                 console.log("from " + artist + " album : " + album);
                 
                 });
+
+};
+
+mySpotify ();

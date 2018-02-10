@@ -218,11 +218,6 @@ function callTwitter () {
 			// 	};
 			};
 		});
-	};
 
 	getTweets ('shanewlrh', 20);
-};
-
-// ======================================================
-
-liriMain (ourTask, ourInput); 
+	};
